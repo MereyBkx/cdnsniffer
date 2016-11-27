@@ -3,7 +3,7 @@
 
   "name": "CDN Sniffer",
   "description": "This tries to find the most popular CDNs",
-  "version": "1.0",
+  "version": "0.1",
 
   "browser_action": {
     "default_icon": "icon.png",
