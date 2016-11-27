@@ -4,8 +4,8 @@ let re = new RegExp(
     'cdn\\.jsdelivr\\.net' + '|' +
     'cdnjs\\.cloudflare\\.com/' + '|' +
     'ajax\\.googleapis\\.com/ajax/libs/' + '|' +
-    'ajax.aspnetcdn.com/ajax/' + '|' +
-    'code.jquery.com/' +
+    'ajax\\.aspnetcdn\\.com/ajax/' + '|' +
+    'code\\.jquery\\.com/' +
     ')',
     'i'
 );
