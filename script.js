@@ -32,7 +32,6 @@ function report(domain, cdn, cdnurl) {
     let key = domain + ' ' + cdnurl;
 
     chrome.storage.sync.get(null, function (stored) {
-        console.log(stored);
         if (stored[key]) {
             console.log('CDN already reported');
             return;
