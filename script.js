@@ -1,6 +1,6 @@
 // the list of recognized CDNs
 let re = new RegExp(
-    '^https?://(' +
+    '^(https?:)?//(' +
     'cdn\\.jsdelivr\\.net' + '|' +
     'cdnjs\\.cloudflare\\.com/' + '|' +
     'ajax\\.googleapis\\.com/ajax/libs/' + '|' +
@@ -14,8 +14,8 @@ let re = new RegExp(
 document.querySelectorAll('script[src]').forEach(function (element) {
     let result = element.src.match(re);
     if (!result) return;
-    console.log('CDN found: ' + result[1] + ' ' + element.src + ' ' + document.location.host);
-    report(document.location.host, result[1], element.src);
+    console.log('CDN found: ' + result[2] + ' ' + element.src + ' ' + document.location.host);
+    report(document.location.host, result[2], element.src);
 });
 
 /**
@@ -31,8 +31,9 @@ document.querySelectorAll('script[src]').forEach(function (element) {
 function report(domain, cdn, cdnurl) {
     let key = domain + ' ' + cdnurl;
 
-    chrome.storage.sync.get(key, function (stored) {
-        if (stored) {
+    chrome.storage.sync.get(null, function (stored) {
+        console.log(stored);
+        if (stored[key]) {
             console.log('CDN already reported');
             return;
         }
@@ -53,7 +54,9 @@ function report(domain, cdn, cdnurl) {
             if (http.readyState !== XMLHttpRequest.DONE) return;
             if (http.responseText.match(/Your response has been recorded/)) {
                 console.log('CDN reported');
-                chrome.storage.sync.set({key: true});
+                let store = {};
+                store[key] = true;
+                chrome.storage.sync.set(store);
             }
         };
         http.send(data);
