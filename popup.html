@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <title>CDN Sniffer CDN list</title>
+    <style>
+        body {
+            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+            font-size: 100%;
+        }
+
+        #list {
+            /* avoid an excessively wide balloon */
+            display: block;
+            text-overflow: ellipsis;
+            overflow-x: hidden;
+            overflow-y: auto;
+            max-width: 400px;
+            max-height: 500px;
+            white-space: nowrap;
+            font-size: 80%;
+            padding: 0;
+        }
+    </style>
+
+</head>
+<body>
+<p>The following CDNs have been reported by you.<br> Thank you very much!</p>
+<ul id="list"></ul>
+
+<script type="application/javascript" src="popup.js"></script>
+</body>
+</html>
+
